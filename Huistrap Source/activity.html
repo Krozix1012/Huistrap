@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Huistrap Activity</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: transparent;
+      font-family: "Segoe UI", Inter, system-ui, sans-serif;
+      user-select: none;
+    }
+    .panel {
+      width: 100%; height: 100%;
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+      padding: 14px 14px 12px;
+      color: #ededed;
+      position: relative;
+      overflow: hidden;
+      animation: pop 0.14s ease-out;
+      display: flex;
+      flex-direction: column;
+    }
+    @keyframes pop {
+      from { opacity: 0; transform: scale(0.97) translateY(4px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .credits-art {
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      height: 70px;
+      width: auto;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .x {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 3;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      color: #999;
+      font-size: 14px;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .x:hover { background: #252525; color: #fff; }
+
+    #content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .picker {
+      display: flex;
+      gap: 6px;
+      margin: 0 28px 10px 0;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .picker::-webkit-scrollbar { height: 0; }
+    .pick {
+      flex: none;
+      max-width: 160px;
+      border: 1px solid #2a2a2a;
+      background: #1c1c1c;
+      color: #c8c8c8;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 650;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pick:hover { background: #252525; color: #fff; }
+    .pick.on {
+      background: rgba(74, 158, 255, 0.14);
+      border-color: #4a9eff;
+      color: #9cc9ff;
+    }
+    .pick-sub {
+      font-weight: 500;
+      color: #7a7a7a;
+    }
+    .pick.on .pick-sub { color: #7aa8d9; }
+
+    .top {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding-right: 28px;
+      margin-bottom: 12px;
+    }
+    .thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      object-fit: cover;
+      flex: none;
+    }
+    .thumb.placeholder {
+      display: flex; align-items: center; justify-content: center;
+      color: #555; font-size: 22px;
+    }
+    .meta { min-width: 0; flex: 1; }
+    .label {
+      font-size: 12px;
+      color: #4a9eff;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .account {
+      font-size: 12px;
+      color: #8a8a8a;
+      margin-top: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: auto;
+      padding-right: 54px;
+    }
+    .stat {
+      background: #1c1c1c;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 12px 14px;
+      min-height: 58px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .stat-k {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 4px;
+    }
+    .stat-v {
+      font-size: 13px;
+      font-weight: 650;
+      color: #e8e8e8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .idle {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      padding: 4px 60px 4px 2px;
+    }
+    .idle-main {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .idle-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+      overflow: hidden;
+    }
+    .idle-icon img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+    .idle strong {
+      display: block;
+      font-size: 17px;
+      color: #e8e8e8;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    .idle span {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.35;
+    }
+    .btn-primary {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 650;
+      cursor: pointer;
+      background: #4a9eff;
+      color: #0b0b0b;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+    .btn-primary:hover { background: #63abff; }
+    .btn-kill {
+      margin-top: 10px;
+      align-self: flex-start;
+      border: 1px solid #5a2a2a;
+      background: #2a1515;
+      color: #ff8a8a;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+      z-index: 3;
+    }
+    .btn-kill:hover { background: #3a1a1a; color: #ffb0b0; }
+    .btn-kill:disabled { opacity: 0.55; cursor: default; }
+    .kill-err {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #ff8a8a;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <img class="credits-art" src="assets/credits-art.png" alt="" />
+    <button class="x" id="btnClose" title="Close">×</button>
+    <div id="content"></div>
+  </div>
+  <script>
+    const content = document.getElementById('content');
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"');
+    }
+    function formatPlaytime(ms) {
+      const totalSec = Math.max(0, Math.floor((ms || 0) / 1000));
+      const h = Math.floor(totalSec / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = totalSec % 60;
+      if (h > 0) return h + 'h ' + String(m).padStart(2,'0') + 'm';
+      return m + 'm ' + String(s).padStart(2,'0') + 's';
+    }
+    function formatServerUptime(firstSeenAt) {
+      if (!firstSeenAt) return 'N/A';
+      const sec = Math.max(0, Math.floor((Date.now() - firstSeenAt) / 1000));
+      const d = Math.floor(sec / 86400);
+      const h = Math.floor((sec % 86400) / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      if (d > 0) return d + 'd ' + h + 'h ' + m + 'm';
+      if (h > 0) return h + 'h ' + m + 'm ' + String(s).padStart(2, '0') + 's';
+      return m + 'm ' + String(s).padStart(2, '0') + 's';
+    }
+    function pickerHtml(payload) {
+      const instances = (payload && payload.instances) || [];
+      if (instances.length < 2) return '';
+      const selected = payload.selectedInstanceId;
+      return `<div class="picker" id="instancePicker">${instances.map((inst, i) => {
+        const on = inst.id === selected ? ' on' : '';
+        const game = inst.inGame && inst.placeName ? inst.placeName : 'Starting…';
+        return `<button class="pick${on}" data-id="${esc(inst.id)}" title="${esc(inst.label)} — ${esc(game)}">${esc(inst.label)} <span class="pick-sub">· ${esc(game)}</span></button>`;
+      }).join('')}</div>`;
+    }
+    function bindPicker() {
+      const picker = document.getElementById('instancePicker');
+      if (!picker) return;
+      picker.querySelectorAll('.pick').forEach((btn) => {
+        btn.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const id = btn.getAttribute('data-id');
+          if (window.activity && window.activity.selectInstance) window.activity.selectInstance(id);
+        };
+      });
+    }
+    function bindKill(payload) {
+      const btn = document.getElementById('btnKill');
+      if (!btn) return;
+      btn.onclick = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        btn.disabled = true;
+        btn.textContent = 'Killing…';
+        try {
+          if (window.activity && window.activity.killInstance) {
+            await window.activity.killInstance(payload.selectedInstanceId);
+          }
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = 'Kill instance';
+          const note = document.getElementById('killErr');
+          if (note) note.textContent = (err && err.message) ? err.message : 'Could not kill this instance.';
+        }
+      };
+    }
+    function killHtml(payload) {
+      if (!payload || !payload.canKill) return '';
+      return `<button class="btn-kill" id="btnKill">Kill instance</button><div class="kill-err" id="killErr"></div>`;
+    }
+    function render(session) {
+      const payload = session || {};
+      const picker = pickerHtml(payload);
+      if (!payload.inGame) {
+        const who = payload.accountLabel ? ` for ${esc(payload.accountLabel)}` : '';
+        content.innerHTML = `
+          ${picker}
+          <div class="idle">
+            <div class="idle-main">
+              <div class="idle-icon"><img src="icon.png" alt="" /></div>
+              <div>
+                <strong>Waiting for a game…</strong>
+                <span>Join an experience${who} and this panel will show name, playtime, and region.</span>
+              </div>
+            </div>
+            <button class="btn-primary" id="btnOpen">Open Huistrap</button>
+            ${killHtml(payload)}
+          </div>`;
+        const open = document.getElementById('btnOpen');
+        if (open) open.onclick = () => window.activity && window.activity.openMain();
+        bindPicker();
+        bindKill(payload);
+        return;
+      }
+      const thumb = payload.thumbnailDataUrl
+        ? `<img class="thumb" src="${esc(payload.thumbnailDataUrl)}" alt="" />`
+        : `<div class="thumb placeholder">◆</div>`;
+      const playtime = payload.joinedAt
+        ? esc(formatPlaytime(Date.now() - payload.joinedAt))
+        : 'N/A';
+      const region = payload.region ? esc(payload.region) : 'N/A';
+      const uptime = payload.serverUptime
+        ? esc(payload.serverUptime)
+        : (payload.serverFirstSeenAt ? '…' : 'N/A');
+      const account = payload.accountLabel
+        ? `<div class="account">${esc(payload.accountLabel)}</div>`
+        : '';
+      content.innerHTML = `
+        ${picker}
+        <div class="top">
+          ${thumb}
+          <div class="meta">
+            <div class="label">In Game</div>
+            <div class="title" title="${esc(payload.placeName)}">${esc(payload.placeName || 'Roblox')}</div>
+            ${account}
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-k">Playtime</div>
+            <div class="stat-v" id="playtime">${playtime}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-k">Region</div>
+            <div class="stat-v" title="${region}">${region}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-k">Server uptime</div>
+            <div class="stat-v" id="serverUptime">${uptime}</div>
+          </div>
+        </div>
+        ${killHtml(payload)}`;
+      bindPicker();
+      bindKill(payload);
+    }
+    document.getElementById('btnClose').onclick = () => window.activity && window.activity.closePanel();
+    let current = null;
+    window.activity.onUpdate((session) => { current = session; render(session); });
+    setInterval(() => {
+      if (!current || !current.inGame) return;
+      const el = document.getElementById('playtime');
+      if (el) el.textContent = current.joinedAt ? formatPlaytime(Date.now() - current.joinedAt) : 'N/A';
+      const up = document.getElementById('serverUptime');
+      if (up) {
+        up.textContent = current.serverFirstSeenAt
+          ? formatServerUptime(current.serverFirstSeenAt)
+          : 'N/A';
+      }
+    }, 1000);
+    render(null);
+  </script>
+</body>
+</html>

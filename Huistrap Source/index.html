@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Huistrap</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="titlebar">
+    <span class="titlebar-brand">
+      <img src="assets/logo.png" alt="" class="titlebar-icon">
+      Huistrap
+    </span>
+    <button id="btnTitlebarClose" class="titlebar-close">✕</button>
+  </div>
+
+  <div class="content">
+    <div id="homeView" class="view home-view">
+      <button id="btnAccounts" class="round-icon-btn" title="Account Manager">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      </button>
+      <div class="home-left">
+        <img src="assets/logo.png" alt="Huistrap" class="home-icon-img">
+        <div class="home-left-text">
+          <p class="logo">Huistrap <span class="app-version-badge" id="appVersionBadge">v–</span></p>
+          <p class="version-label" id="versionLabel">–</p>
+          <div class="executor-home-status" id="executorHomeStatus">
+            <span id="executorHomeDot" class="executor-status-dot neutral"></span>
+            <span id="executorHomeLabel">No executor selected</span>
+          </div>
+          <a href="#" id="linkUpdateNow" class="home-link home-update-now hidden">Update Now</a>
+          <a href="#" id="linkAbout" class="home-link">About Huistrap</a>
+          <a href="https://discord.gg/jwbu7M9yuH" id="linkDiscord" class="home-link">Join our Discord server</a>
+          <a href="#" id="linkCredits" class="home-link">Credits</a>
+        </div>
+      </div>
+      <div class="home-right">
+        <button id="btnPlay" class="action-btn">
+          <span class="action-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+          <span class="action-label">Launch Roblox</span>
+          <span class="action-chevron">›</span>
+        </button>
+        <button id="btnSettings" class="action-btn">
+          <span class="action-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </span>
+          <span class="action-label">Configure settings</span>
+          <span class="action-chevron">›</span>
+        </button>
+        <button id="btnStudio" class="action-btn">
+          <span class="action-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          </span>
+          <span class="action-label">Launch Roblox Studio</span>
+          <span class="action-chevron">›</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="connectingView" class="view connecting-view hidden">
+      <div class="connecting-header">
+        <span id="connectingChannel">Channel: production</span>
+        <span id="connectingVersion">Version: –</span>
+      </div>
+      <div class="connecting-visual">
+        <div class="connecting-logo-ring" id="connectingLogoRing">
+          <img src="assets/logo.png" alt="" class="connecting-logo" id="connectingLogo">
+        </div>
+      </div>
+      <p class="connecting-text" id="connectingText">Connecting to Roblox...</p>
+      <div class="progress-bar connecting-progress-bar" id="connectingProgressBar">
+        <div id="connectingProgressFill" class="progress-fill connecting-progress-fill"></div>
+      </div>
+      <p class="connecting-stage-label" id="connectingStageLabel">Authenticating</p>
+      <button id="btnConnectingCancel" class="btn btn-cancel btn-small">Cancel</button>
+    </div>
+
+    <div id="updateView" class="view update-view hidden">
+      <div class="update-hero">
+        <img src="assets/credits-art.png" alt="" class="update-art">
+        <div class="update-hero-text">
+          <p class="update-kicker">Roblox update</p>
+          <p class="title update-title">Update available</p>
+          <p class="subtitle" id="versionInfo"></p>
+        </div>
+      </div>
+      <div class="buttons update-buttons">
+        <button id="btnDownload" class="btn btn-primary">Download &amp; Launch</button>
+        <button id="btnSkip" class="btn btn-secondary">Launch current version</button>
+        <button id="btnCancel" class="btn btn-cancel btn-small">Cancel</button>
+      </div>
+    </div>
+
+    <div id="progressView" class="view progress-view hidden">
+      <img src="assets/logo.png" alt="" class="progress-icon hidden" id="progressIcon">
+      <p id="progressPercent" class="progress-percent hidden">0%</p>
+      <p id="progressTitle" class="progress-title">Downloading...</p>
+      <p id="progressFileText" class="progress-file"></p>
+      <div class="progress-bar" id="progressBarOuter">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+      <div class="progress-meta">
+        <span id="progressBytesText" class="progress-bytes"></span>
+        <span id="progressSpeed" class="progress-eta"></span>
+      </div>
+    </div>
+
+    <div id="errorView" class="view hidden">
+      <p class="title error">Error</p>
+      <p id="errorText" class="subtitle"></p>
+      <div class="buttons">
+        <button id="btnErrorClose" class="btn btn-cancel">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="accountsOverlay" class="accounts-overlay hidden">
+    <div class="accounts-window">
+      <div class="accounts-header">
+        <span class="accounts-header-brand">
+          <img src="assets/logo.png" alt="" class="titlebar-icon">
+          Account Manager
+        </span>
+        <button id="btnAccountsClose" class="titlebar-close">✕</button>
+      </div>
+      <div class="accounts-layout">
+        <aside class="accounts-pane">
+          <div class="accounts-pane-head">
+            <span class="accounts-count" id="accountsCount">Loading accounts...</span>
+            <button id="btnAccountAdd" class="btn btn-primary btn-small accounts-add-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="accounts-add-icon"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span id="btnAccountAddLabel">Add</span>
+            </button>
+          </div>
+          <p id="accountsError" class="accounts-error hidden"></p>
+          <div id="accountsList" class="accounts-list"></div>
+        </aside>
+
+        <section class="accounts-detail" id="accountsDetail">
+          <div class="accounts-detail-empty" id="accountsDetailEmpty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="accounts-empty-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <p class="accounts-empty-title">Select an account</p>
+            <p class="accounts-empty-sub">Launch Roblox, open a logged-in browser, join a game by ID, or hop onto another Huistrap account’s server.</p>
+          </div>
+
+          <div class="accounts-detail-body hidden" id="accountsDetailBody">
+            <div class="accounts-hero">
+              <div class="account-avatar-wrap account-avatar-wrap-lg" id="detailAvatarWrap"></div>
+              <div class="accounts-hero-text">
+                <p class="accounts-hero-name" id="detailDisplayName">–</p>
+                <p class="accounts-hero-user" id="detailUsername">@–</p>
+                <span class="presence-pill" id="detailPresence">Offline</span>
+              </div>
+            </div>
+
+            <div class="accounts-action-row">
+              <button id="btnDetailLaunch" class="btn btn-primary account-launch-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                <span>Launch Roblox</span>
+              </button>
+              <button id="btnDetailBrowser" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-inline-icon"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                Open in Browser
+              </button>
+              <button id="btnDetailKill" class="btn btn-kill hidden">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="btn-inline-icon"><rect x="6" y="6" width="12" height="12" rx="1.5"></rect></svg>
+                Kill instance
+              </button>
+              <button id="btnDetailRemove" class="btn btn-cancel" title="Remove account">Remove</button>
+            </div>
+
+            <div class="accounts-card">
+              <div class="accounts-card-head">
+                <span class="accounts-card-title">Join a game</span>
+                <span class="accounts-card-sub">Place ID joins the experience. Job ID joins that exact server.</span>
+              </div>
+              <div class="accounts-join-grid">
+                <label class="accounts-field">
+                  <span>Saved game</span>
+                  <select id="savedGameSelect">
+                    <option value="">Custom Game ID</option>
+                  </select>
+                </label>
+                <label class="accounts-field">
+                  <span>Game ID</span>
+                  <input type="text" id="joinPlaceInput" placeholder="2753915549 or roblox.com/games/…" spellcheck="false">
+                </label>
+                <label class="accounts-field">
+                  <span>Job ID <em>(optional)</em></span>
+                  <input type="text" id="joinJobInput" placeholder="Server UUID" spellcheck="false">
+                </label>
+              </div>
+              <div class="accounts-card-actions">
+                <button id="btnJoinGame" class="btn btn-primary btn-small">Join game</button>
+                <button id="btnSaveGame" class="btn btn-secondary btn-small">Save Game ID</button>
+              </div>
+            </div>
+
+            <div class="accounts-card">
+              <div class="accounts-card-head">
+                <span class="accounts-card-title">Join another account</span>
+                <span class="accounts-card-sub">Hop onto the same game and server as anyone connected to Huistrap.</span>
+              </div>
+              <div class="accounts-follow-row">
+                <select id="followAccountSelect">
+                  <option value="">No one in-game right now</option>
+                </select>
+                <button id="btnJoinAccount" class="btn btn-primary btn-small">Join them</button>
+              </div>
+            </div>
+
+            <div class="accounts-card">
+              <div class="accounts-card-head">
+                <span class="accounts-card-title">Saved games</span>
+                <span class="accounts-card-sub">Rename a Place ID so you can pick it next time — e.g. 2753915549 → Blox Fruits.</span>
+              </div>
+              <div id="savedGamesList" class="saved-games-list"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div id="settingsOverlay" class="settings-overlay hidden">
+    <div class="settings-window">
+      <div class="settings-header">
+        <span class="settings-header-brand">
+          <img src="assets/logo.png" alt="" class="titlebar-icon">
+          Huistrap Settings
+        </span>
+        <button id="btnSettingsClose" class="titlebar-close">✕</button>
+      </div>
+      <div class="settings-body">
+        <div class="settings-sidebar">
+          <div class="sidebar-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sidebar-search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" placeholder="Search" id="sidebarSearch">
+          </div>
+
+          <button class="sidebar-item active" data-panel="bootstrapper">
+            <span class="sidebar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            </span>
+            Bootstrapper
+          </button>
+          <button class="sidebar-item" data-panel="deployment">
+            <span class="sidebar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6-2A5 5 0 0 0 6 18h11.5z"></path></svg>
+            </span>
+            Deployment
+          </button>
+          <button class="sidebar-item" data-panel="fflags">
+            <span class="sidebar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+            </span>
+            FastFlags
+          </button>
+          <button class="sidebar-item" data-panel="executor">
+            <span class="sidebar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </span>
+            Executor
+          </button>
+
+          <div class="sidebar-spacer"></div>
+
+          <button class="sidebar-item" data-panel="about">
+            <span class="sidebar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            </span>
+            About
+          </button>
+        </div>
+
+        <div class="settings-panels">
+          <div id="panel-bootstrapper" class="settings-panel">
+            <h2>Bootstrapper</h2>
+            <p class="panel-desc">Configure what Huistrap should do when launching Roblox.</p>
+
+            <div class="setting-card">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Download Concurrency</span>
+                <span class="setting-card-sub">Number of simultaneous downloads (more = faster, more network load).</span>
+              </div>
+              <select id="concurrencySelect">
+                <option value="4">4</option>
+                <option value="8">8</option>
+                <option value="12">12</option>
+                <option value="16">16</option>
+              </select>
+            </div>
+
+            <div class="setting-card">
+              <div class="setting-card-text">
+                <span class="setting-card-title">FPS Limit</span>
+                <span class="setting-card-sub">Custom framerate cap. Leave empty for Roblox default.</span>
+              </div>
+              <input type="text" id="fpsCapInput" class="setting-text-input" placeholder="e.g. 144" inputmode="numeric">
+            </div>
+
+            <div class="setting-card">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Mouse Cursor</span>
+                <span class="setting-card-sub">Roblox in-game cursor style (from Fishstrap / classic packs).</span>
+              </div>
+              <select id="cursorSelect">
+                <option value="default">Default (Roblox)</option>
+                <option value="From2006">Classic 2006</option>
+                <option value="From2013">Classic 2013</option>
+              </select>
+            </div>
+
+            <div class="setting-card">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Activity tray</span>
+                <span class="setting-card-sub">System tray with game name, thumbnail, playtime &amp; server region (RoValra).</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="activityTrayToggle" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-card setting-card-column">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Custom Font</span>
+                <span class="setting-card-sub" id="customFontLabel">No custom font selected.</span>
+              </div>
+              <div class="setting-buttons-inline">
+                <button id="btnChooseFont" class="btn btn-secondary btn-small">Choose font (.ttf)</button>
+                <button id="btnClearFont" class="btn btn-cancel btn-small">Remove</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="panel-deployment" class="settings-panel hidden">
+            <h2>Deployment</h2>
+            <p class="panel-desc">Which Roblox build Huistrap tracks, and where it's stored.</p>
+
+            <div class="setting-card">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Roblox Channel</span>
+                <span class="setting-card-sub">Determines which update channel is checked for both Player and Studio.</span>
+              </div>
+              <select id="channelSelect">
+                <option value="LIVE">LIVE (Default)</option>
+                <option value="ZCanary">ZCanary (Beta)</option>
+                <option value="ZIntegration">ZIntegration</option>
+              </select>
+            </div>
+
+            <div class="deployment-versions">
+              <div class="deployment-version-card">
+                <span class="deployment-version-label">Player</span>
+                <span class="deployment-version-value" id="deploymentPlayerVersion">Not installed</span>
+              </div>
+              <div class="deployment-version-card">
+                <span class="deployment-version-label">Studio</span>
+                <span class="deployment-version-value" id="deploymentStudioVersion">Not installed</span>
+              </div>
+            </div>
+
+            <div class="setting-card setting-card-column">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Player Versions Folder</span>
+                <span class="setting-card-sub" id="versionsDirLabel">–</span>
+              </div>
+              <div class="setting-buttons-inline">
+                <button id="btnChangeDir" class="btn btn-secondary btn-small">Change</button>
+                <button id="btnOpenDir" class="btn btn-secondary btn-small">Open</button>
+              </div>
+            </div>
+
+            <div class="setting-card setting-card-column">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Studio Versions Folder</span>
+                <span class="setting-card-sub" id="studioVersionsDirLabel">–</span>
+              </div>
+              <div class="setting-buttons-inline">
+                <button id="btnChangeStudioDir" class="btn btn-secondary btn-small">Change</button>
+                <button id="btnOpenStudioDir" class="btn btn-secondary btn-small">Open</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="panel-fflags" class="settings-panel hidden">
+            <h2>FastFlags</h2>
+            <p class="panel-desc">Custom Roblox FastFlags. Written to ClientAppSettings.json.</p>
+
+            <div class="fflags-toolbar">
+              <div class="fflags-view-toggle">
+                <button type="button" class="fflags-toggle-btn active" data-fview="list">List</button>
+                <button type="button" class="fflags-toggle-btn" data-fview="json">JSON</button>
+              </div>
+              <span class="fflags-count" id="fflagsCount">0 flags</span>
+              <div class="fflags-toolbar-spacer"></div>
+              <button id="btnFflagClearAll" class="btn btn-cancel btn-small">Clear All</button>
+              <button id="btnFflagAddRow" class="btn btn-secondary btn-small">+ Add Flag</button>
+            </div>
+
+            <div class="fflags-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fflags-search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="fflagsSearch" placeholder="Filter flags…">
+            </div>
+
+            <div id="fflagsListView" class="fflags-editor">
+              <div id="fflagsList" class="fflags-list"></div>
+            </div>
+
+            <div id="fflagsJsonView" class="fflags-editor hidden">
+              <p class="panel-desc fflags-json-hint">Changes here are only saved after clicking "Apply".</p>
+              <textarea id="fflagJsonEditor" class="fflags-json-editor" spellcheck="false"></textarea>
+              <div class="fflags-json-actions">
+                <span id="fflagJsonError" class="fflags-json-error"></span>
+                <button id="btnFflagJsonApply" class="btn btn-primary btn-small">Apply</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="panel-executor" class="settings-panel hidden">
+            <h2>Executor</h2>
+            <p class="panel-desc">Pick a Windows executor from WEAO. Its update status appears on the home screen.</p>
+
+            <div class="executor-toolbar">
+              <div class="executor-search-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="executor-search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="executorSearch" placeholder="Search executors…">
+              </div>
+              <button id="btnExecutorClear" class="btn btn-cancel btn-small">Clear selection</button>
+            </div>
+
+            <div id="executorList" class="executor-list">
+              <p class="executor-loading">Loading executors…</p>
+            </div>
+
+            <p class="panel-desc executor-footer-note">Data from <a href="https://weao.xyz" target="_blank" rel="noopener">weao.xyz</a> · Windows only · Status auto-refreshes</p>
+          </div>
+
+          <div id="panel-about" class="settings-panel hidden">
+            <h2>About</h2>
+            <p class="panel-desc">Huistrap – Custom Roblox Bootstrapper.</p>
+
+            <div id="aboutUpdateBanner" class="setting-card about-update-banner hidden">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Update available</span>
+                <span class="setting-card-sub" id="aboutUpdateBannerText">A newer version of Huistrap is ready.</span>
+              </div>
+              <button id="btnInstallUpdateAbout" class="btn btn-primary btn-small">Update Now</button>
+            </div>
+
+            <div class="setting-card">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Version</span>
+                <span class="setting-card-sub" id="aboutVersionText">–</span>
+              </div>
+            </div>
+
+            <div class="setting-card">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Last Update</span>
+                <span class="setting-card-sub" id="aboutLastUpdateText">–</span>
+              </div>
+              <button id="btnCheckUpdateNow" class="btn btn-secondary btn-small">Check now</button>
+            </div>
+
+            <div class="setting-card">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Changelog</span>
+                <span class="setting-card-sub">View the release notes for this version.</span>
+              </div>
+              <button id="btnShowChangelog" class="btn btn-secondary btn-small">View</button>
+            </div>
+
+            <div class="setting-card">
+              <div class="setting-card-text">
+                <span class="setting-card-title">Credits</span>
+                <span class="setting-card-sub">The people behind Huistrap.</span>
+              </div>
+              <button id="btnShowCredits" class="btn btn-secondary btn-small">View</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-footer">
+        <div class="settings-footer-spacer"></div>
+        <button id="btnSettingsSaveLaunch" class="btn btn-primary btn-small">Save and Launch</button>
+        <button id="btnSettingsSave" class="btn btn-secondary btn-small">Save</button>
+        <button id="btnSettingsClose2" class="btn btn-cancel btn-small">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="saveGameOverlay" class="changelog-overlay hidden">
+    <div class="changelog-modal savegame-modal">
+      <div class="changelog-header">
+        <img src="assets/logo.png" alt="" class="changelog-logo">
+        <div>
+          <p class="changelog-title">Save Game</p>
+          <p class="changelog-version" id="saveGamePlaceIdLabel">Place –</p>
+        </div>
+      </div>
+      <div class="changelog-body savegame-body">
+        <label class="accounts-field">
+          <span>Name</span>
+          <input type="text" id="saveGameNameInput" placeholder="e.g. Blox Fruits" spellcheck="false">
+        </label>
+      </div>
+      <div class="changelog-footer">
+        <button id="btnSaveGameCancel" class="btn btn-cancel btn-small">Cancel</button>
+        <button id="btnSaveGameConfirm" class="btn btn-primary btn-small">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="changelogOverlay" class="changelog-overlay hidden">
+    <div class="changelog-modal">
+      <div class="changelog-header">
+        <img src="assets/logo.png" alt="" class="changelog-logo">
+        <div>
+          <p class="changelog-title">What's New</p>
+          <p class="changelog-version" id="changelogVersion">v–</p>
+        </div>
+      </div>
+      <div class="changelog-body" id="changelogBody"></div>
+      <div class="changelog-footer">
+        <button id="btnChangelogClose" class="btn btn-primary btn-small">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="creditsOverlay" class="changelog-overlay hidden">
+    <div class="changelog-modal credits-modal">
+      <div class="changelog-header">
+        <img src="assets/logo.png" alt="" class="changelog-logo">
+        <div>
+          <p class="changelog-title">Credits</p>
+          <p class="changelog-version">Huistrap</p>
+        </div>
+      </div>
+      <div class="changelog-body credits-body">
+        <div class="credits-list">
+          <div class="credits-entry">
+            <span class="credits-name">Krozix</span>
+            <span class="credits-role">Creator &amp; Developer</span>
+          </div>
+          <div class="credits-entry">
+            <span class="credits-name">nf1r</span>
+            <span class="credits-role">First ever user &amp; Beta Tester</span>
+          </div>
+        </div>
+        <img src="assets/credits-art.png" alt="" class="credits-art">
+      </div>
+      <div class="changelog-footer">
+        <button id="btnCreditsClose" class="btn btn-primary btn-small">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "name": "huistrap",
+  "version": "1.4.0",
+  "description": "Sigma Beast Huistrap",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.huig.huistrap",
+    "productName": "Huistrap",
+    "asar": false,
+    "protocols": [
+      {
+        "name": "Roblox Player Launch Protocol",
+        "schemes": ["roblox-player"]
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "index.html",
+      "style.css",
+      "icon.png",
+      "icon.ico",
+      "activity.html",
+      "activity-preload.js",
+      "assets/**/*"
+    ]
+  }
+}

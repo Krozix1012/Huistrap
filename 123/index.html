@@ -49,9 +49,9 @@ nav a.l:hover{color:var(--text);background:#ffffff0d}
 .cta{display:flex;flex-wrap:wrap;gap:12px;animation:fade 1s .65s both}
 .fine{margin-top:18px;color:var(--dim);font-size:.9rem;animation:fade 1s .8s both}
 @keyframes fade{from{opacity:0;transform:translateY(12px)}}
-.stage{position:relative;perspective:1200px;animation:fade 1.2s .35s both}
-.stage .logo{position:absolute;width:62%;right:-8%;top:-15%;z-index:2;filter:drop-shadow(0 20px 40px rgba(74,158,255,.35)) drop-shadow(0 4px 10px #000a);transition:transform .15s ease-out;pointer-events:none;animation:float 6s ease-in-out infinite}
-@keyframes float{50%{translate:0 -12px}}
+.stage{position:relative;perspective:1200px;animation:fade 1.2s .35s both;padding-top:72px}
+.stage .logo{position:absolute;width:20%;left:50%;top:-12px;transform:translateX(-50%);z-index:2;filter:drop-shadow(0 12px 28px rgba(74,158,255,.35)) drop-shadow(0 4px 10px #000a);transition:transform .15s ease-out;pointer-events:none;animation:float 6s ease-in-out infinite}
+@keyframes float{50%{translate:0 -8px}}
 .win{position:relative;background:var(--bg);border:1px solid var(--line2);border-radius:14px;overflow:hidden;box-shadow:0 40px 80px -30px #000,0 0 0 1px #000,0 0 90px -30px rgba(74,158,255,.45);transition:transform .15s ease-out}
 .tb{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:var(--deep);font:600 .82rem var(--body);color:#cfcfcf}
 .tb b{display:flex;align-items:center;gap:8px;font-weight:600}.tb img{height:15px}.tb i{font-style:normal;color:var(--dim)}
@@ -132,7 +132,7 @@ footer ul{list-style:none;display:grid;gap:6px}footer ul span{color:var(--text);
 footer a:hover{color:var(--sky)}
 .disc{margin-top:36px;font-size:.82rem;color:var(--dim);max-width:44rem}
 
-@media(max-width:920px){.hero{grid-template-columns:1fr;padding-top:120px;min-height:0}.stage{margin-top:30px}.stage .logo{width:46%;right:-2%;top:-20%}
+@media(max-width:920px){.hero{grid-template-columns:1fr;padding-top:120px;min-height:0}.stage{margin-top:30px;padding-top:56px}.stage .logo{width:26%;left:50%;right:auto;top:-8px;transform:translateX(-50%)}
 .tour{grid-template-columns:1fr}.tabs{position:static;flex-direction:row;overflow-x:auto;padding-bottom:6px}.tab{flex:none}.tab span{display:none}
 .extras,.steps{grid-template-columns:1fr}nav a.l{display:none}section{padding:80px 0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.hero h1 span{opacity:1;transform:none}}
@@ -292,7 +292,7 @@ addEventListener('pointermove',e=>{
   if(reduce)return;const r=$('#stage').getBoundingClientRect();
   const x=(e.clientX-(r.left+r.width/2))/innerWidth,y=(e.clientY-(r.top+r.height/2))/innerHeight;
   $('#win').style.transform=`rotateY(${x*-9}deg) rotateX(${y*7}deg)`;
-  $('#logo').style.transform=`translate(${x*36}px,${y*28}px) rotate(${x*6}deg)`;
+  $('#logo').style.transform=`translate(calc(-50% + ${x*22}px),${y*16}px) rotate(${x*4}deg)`;
 });
 
 /* hero launch loop */
